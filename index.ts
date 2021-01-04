@@ -1,31 +1,13 @@
-'use strict';
+import { getServerWithPlugins } from './server';
 
-const Hapi = require('@hapi/hapi');
-
-const init = async () => {
-
-    const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
-    });
-
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request, h) => {
-
-            return 'Hello World!';
-        }
-    });
-
+const start = async () => {
+    //TODO config prisma and DB
+    const server = await getServerWithPlugins();
     await server.start();
-    console.log('Server running on %s', server.info.uri);
+    console.info('Server running at:', server.info.uri);
 };
 
-process.on('unhandledRejection', (err) => {
-
-    console.log(err);
+start().catch((err) => {
+    console.error(err);
     process.exit(1);
 });
-
-init();
