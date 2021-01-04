@@ -1,10 +1,10 @@
-import Hapi from '@hapi/hapi';
+import * as Hapi from '@hapi/hapi';
 import { PlayerPlugin } from './plugins/player';
 
 const getServer = () => {
     return new Hapi.Server({
-        port: 3000,
-        host: 'localhost'
+        host: 'localhost',
+        port: 3000
     });
 };
 

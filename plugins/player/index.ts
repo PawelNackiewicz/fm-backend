@@ -1,4 +1,4 @@
-import type Hapi from '@hapi/hapi';
+import type * as Hapi from '@hapi/hapi';
 
 type PlayerPluginOptions = {
     readonly message: string;
@@ -10,8 +10,6 @@ export const PlayerPlugin: Hapi.Plugin<PlayerPluginOptions> = {
     version: '1.0.0',
     async register (server, options) {
 
-        // Create a route for example
-
         server.route({
             method: 'GET',
             path: '/test',
@@ -20,8 +18,5 @@ export const PlayerPlugin: Hapi.Plugin<PlayerPluginOptions> = {
                 return `hello, ${options.message}`;
             }
         });
-
-        // etc ...
-        await someAsyncMethods();
     }
 };
