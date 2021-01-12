@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^20.0.1"
+    "@hapi/hapi": "^20.0.1",
+    "@prisma/cli": "^2.14.0",
+    "@prisma/client": "^2.14.0",
+    "dotenv": "^8.2.0"
   },
   "type": "module",
   "devDependencies": {
