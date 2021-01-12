@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  footballers_app:
+    image: postgres:11.5-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DBNAME: 'footballers'
+      POSTGRES_PASSWORD: 'footballers'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
