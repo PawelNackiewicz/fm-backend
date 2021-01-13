@@ -23,3 +23,19 @@ enum UserRole {
   USER
   ADMIN
 }
+
+model Player {
+  id Int @default(autoincrement()) @id
+  rating Int
+  firstName String
+  lastName String
+  age Int
+  position String
+  club String
+  wage Int
+  value Int
+  nation String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
