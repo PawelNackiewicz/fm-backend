@@ -33,3 +33,15 @@ export const getServerWithPlugins = async () => {
 
     return server;
 };
+
+export async function createServer(): Promise<Hapi.Server> {
+    const server = await getServerWithPlugins()
+    await server.initialize()
+    return server
+}
+
+export async function startServer(server: Hapi.Server): Promise<Hapi.Server> {
+    await server.start()
+    console.log(`Server running on ${server.info.uri}`)
+    return server
+}
