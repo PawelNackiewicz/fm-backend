@@ -13,15 +13,14 @@
   "dependencies": {
     "@hapi/boom": "^9.1.1",
     "@hapi/hapi": "^20.0.3",
-    "@hapi/joi": "^17.1.1",
     "@prisma/cli": "^2.14.0",
     "@prisma/client": "^2.14.0",
     "dotenv": "^8.2.0",
+    "joi": "^17.3.0",
     "ts-jest": "^26.4.4"
   },
   "devDependencies": {
     "@types/hapi__hapi": "^20.0.3",
-    "@types/hapi__joi": "^17.1.6",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.19",
     "jest": "^26.6.3",

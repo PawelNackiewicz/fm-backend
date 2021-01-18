@@ -1,5 +1,7 @@
 import * as Hapi from '@hapi/hapi';
-import { PlayerPlugin } from './plugins/player';
+import {PlayerPlugin} from './plugins/player';
+import {UserPlugin} from "./plugins/user";
+import prismaPlugin from "./plugins/prisma";
 
 const getServer = () => {
     return new Hapi.Server({
@@ -11,22 +13,19 @@ const getServer = () => {
 export const getServerWithPlugins = async () => {
     const server = getServer();
 
-    await server.register(
+    await server.register([
         {
             plugin: PlayerPlugin,
             options: {
                 message: 'PLAYER'
             },
         },
-        {
-            routes: {
-                prefix: '/players',
-            },
-        },
-    );
+        { plugin: UserPlugin },
+        { plugin: prismaPlugin }
+    ]);
 
 
-    server.events.on({ name: 'request', channels: 'error' }, (_request, event, _tags) => {
+    server.events.on({name: 'request', channels: 'error'}, (_request, event, _tags) => {
         // const baseUrl = `${server.info.protocol}://${request.info.host}`;
         console.error(event.error);
     });
