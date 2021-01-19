@@ -108,9 +108,9 @@ interface UserInput {
 }
 
 async function getUsersHandler(request, h) {
-    const { db }  = request.server.app
+    const { prisma }  = request.server.app
     try {
-        const users = await db.user.findMany({
+        const users = await prisma.user.findMany({
             select: {
                 id: true,
                 email: true,
@@ -131,7 +131,7 @@ async function getUserHandler(request, h) {
     const userId = parseInt(request.params.userId, 10)
 
     try {
-        const user = await prisma.user.findOne({
+        const user = await prisma.user.findUnique({
             where: {
                 id: userId,
             },
@@ -198,6 +198,11 @@ async function updateUserHandler(request, h) {
                 id: userId,
             },
             data: payload,
+            select: {
+                id: true,
+                email: true,
+                role: true,
+            },
         })
         return h.response(updatedUser).code(200)
     } catch (err) {
